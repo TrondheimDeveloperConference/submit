@@ -1,4 +1,4 @@
 FROM openjdk:8
 
-ADD target/app.jar /
-cmd java -jar -Dserver.port=5000 -Djava.net.preferIPv4Stack=true -Dfile.encoding=UTF-8 -Djava.security.egd=file:///dev/urandom app.jar
+ADD app.jar /
+cmd java ${JAVA_OPTS} -Dserver.port=8081 -Djava.net.preferIPv4Stack=true -Dfile.encoding=UTF-8 -Djava.security.egd=file:///dev/urandom -jar /app.jar --spring.config.location=file:/submit-backend.properties
