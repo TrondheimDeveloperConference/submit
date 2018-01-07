@@ -30,7 +30,7 @@ view model =
 viewWrapper : List (Html Msg) -> Html Msg
 viewWrapper content =
     div [ class "wrapper" ]
-        [ div [ class "logo-wrapper" ] [ img [ src "assets/neon-logo.svg", class "logo" ] [] ]
+        [ div [ class "logo-wrapper" ] [ img [ src "assets/tdc-logo.svg", class "logo" ] [] ]
         , div [ class "submissions-list" ]
             content
         ]

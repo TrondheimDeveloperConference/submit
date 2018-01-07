@@ -1,7 +1,5 @@
 @import 'fonts';
 @import 'colors';
-@import 'tron-font';
-@import 'eurostile-font';
 
 body {
     margin: 0;
@@ -10,11 +8,11 @@ body {
     color: @text;
     font-size: 10px;
     line-height: 1.5;
-    font-family: 'Open Sans', serif;
+    .sans
 }
 
 h1 {
-    .eurostile;
+    .roboto;
     font-size: 4em;
     text-transform: uppercase;
 }
@@ -23,7 +21,7 @@ h2 {
 }
 
 button {
-    .eurostile;
+    .sans;
     background-color: @green--dark;
     letter-spacing: 1px;
     border: none;

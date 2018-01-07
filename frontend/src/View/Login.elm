@@ -12,7 +12,7 @@ view : Model -> Html Msg
 view model =
     div [ class "wrapper login" ]
         [ div [ class "logo-wrapper" ]
-            [ img [ src "assets/neon-logo.svg", class "logo" ] [] ]
+            [ img [ src "assets/tdc-logo.svg", class "logo" ] [] ]
         , h1 [] [ text "Get ready to speak at", br [] [], text "JavaZone 2017" ]
         , div [ class "email-wrapper" ]
             [ input [ value model.email, onInput LoginEmail, onEnter LoginSubmitEmail, type_ "email", class "email", id "email-address", placeholder "Your email address" ] []
