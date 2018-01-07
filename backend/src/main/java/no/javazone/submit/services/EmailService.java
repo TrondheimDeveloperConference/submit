@@ -45,7 +45,6 @@ public class EmailService {
         submission.speakers.stream()
                 .map(s -> s.email)
                 .map(EmailAddress::new)
-                .filter(Objects::nonNull)
                 .forEach(emailAddress -> {
                     Token token = authenticationService.createTokenForEmail(emailAddress);
                     send(emailAddress, emailConfiguration.subjectPrefix + "JavaZone submission marked for review: " + submission.title, generateReviewEmail(submission, token));
@@ -55,11 +54,13 @@ public class EmailService {
     private void send(EmailAddress address, String subject, String emailBody) {
         try {
             Email email = new SimpleEmail();
-            email.setHostName("smtp.googlemail.com");
-            email.setSmtpPort(465);
-            email.setAuthenticator(new DefaultAuthenticator(emailConfiguration.smtpUser, emailConfiguration.smtpPass));
-            email.setSSLOnConnect(true);
-            email.setFrom("program@java.no", "JavaZone Program Committee");
+            email.setHostName(emailConfiguration.hostName);
+            email.setSmtpPort(emailConfiguration.smtpPort);
+            if(emailConfiguration.authenticate) {
+                email.setAuthenticator(new DefaultAuthenticator(emailConfiguration.smtpUser, emailConfiguration.smtpPass));
+                email.setSSLOnConnect(true);
+            }
+            email.setFrom(emailConfiguration.fromAddress, emailConfiguration.fromName);
             email.setSubject(subject);
             email.setMsg(emailBody);
             email.addTo(address.toString());

@@ -15,6 +15,16 @@ public class EmailConfiguration {
 
     public String subjectPrefix;
 
+    public String hostName;
+
+    public int smtpPort;
+
+    public boolean authenticate;
+
+    public String fromAddress;
+
+    public String fromName;
+
     public void setSmtpUser(String smtpUser) {
         this.smtpUser = smtpUser;
     }
@@ -29,5 +39,25 @@ public class EmailConfiguration {
 
     public void setSubjectPrefix(String subjectPrefix) {
         this.subjectPrefix = subjectPrefix;
+    }
+
+    public void setHostName(String hostName) {
+        this.hostName = hostName;
+    }
+
+    public void setSmtpPort(int smtpPort) {
+        this.smtpPort = smtpPort;
+    }
+
+    public void setAuthenticate(boolean authenticate) {
+        this.authenticate = authenticate;
+    }
+
+    public void setFromAddress(String fromAddress) {
+        this.fromAddress = fromAddress;
+    }
+
+    public void setFromName(String fromName) {
+        this.fromName = fromName;
     }
 }
