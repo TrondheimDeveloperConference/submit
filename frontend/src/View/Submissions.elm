@@ -58,10 +58,7 @@ viewSubmissions submissions =
     in
         [ div [ class "flex-header" ]
             [ h1 [ class "flex-header-element" ] [ text "Your JavaZone Talks" ]
-            , div [ class "flex-header-element flex-header-element-vertical" ]
-                [ button [ disabled True, class "new-talk button-new" ] [ text "Call for speakers is closed" ]
-                , div [ class "disabled-text" ] [ text "(but you can still edit your already submitted ones!)" ]
-                ]
+            , div [ class "flex-header-element" ] [ button [ onClick SubmissionsCreateTalk, class "new-talk button-new" ] [ text "Create new draft" ] ]
             ]
         , introtext
         , div [ class "submissions" ] years
