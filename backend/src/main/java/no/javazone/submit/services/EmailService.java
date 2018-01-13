@@ -55,10 +55,16 @@ public class EmailService {
         try {
             Email email = new SimpleEmail();
             email.setHostName(emailConfiguration.hostName);
-            email.setSmtpPort(emailConfiguration.smtpPort);
             if(emailConfiguration.authenticate) {
                 email.setAuthenticator(new DefaultAuthenticator(emailConfiguration.smtpUser, emailConfiguration.smtpPass));
+            }
+
+            if(emailConfiguration.useSSL) {
                 email.setSSLOnConnect(true);
+                email.setSslSmtpPort("" + emailConfiguration.smtpPort);
+
+            } else {
+                email.setSmtpPort(emailConfiguration.smtpPort);
             }
             email.setFrom(emailConfiguration.fromAddress, emailConfiguration.fromName);
             email.setSubject(subject);

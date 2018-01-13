@@ -20,6 +20,7 @@ public class EmailConfiguration {
     public int smtpPort;
 
     public boolean authenticate;
+    public boolean useSSL;
 
     public String fromAddress;
 
