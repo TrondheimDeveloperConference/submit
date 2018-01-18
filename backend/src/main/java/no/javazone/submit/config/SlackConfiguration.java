@@ -19,4 +19,8 @@ public class SlackConfiguration {
     public void setChannel(String channel) {
         this.channel = channel;
     }
+
+    public void setDisabled(boolean disabled) {
+        this.disabled = disabled;
+    }
 }

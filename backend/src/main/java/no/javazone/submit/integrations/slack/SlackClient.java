@@ -40,8 +40,12 @@ public class SlackClient {
     public SlackClient(SlackConfiguration slackConfiguration, CakeConfiguration cakeConfiguration) {
         this.slackConfiguration = slackConfiguration;
         this.cakeConfiguration = cakeConfiguration;
-        slack = SlackSessionFactory.createWebSocketSlackSession(slackConfiguration.token);
-        connectIfNessesary();
+        if(slackConfiguration.disabled) {
+            slack = null;
+        } else {
+            slack = SlackSessionFactory.createWebSocketSlackSession(slackConfiguration.token);
+            connectIfNessesary();
+        }
     }
 
     public void postTalkMarkedForInReview(String id, String title, String format, String length, String language, String theAbstract, String submitterName, String submitterImage) {
