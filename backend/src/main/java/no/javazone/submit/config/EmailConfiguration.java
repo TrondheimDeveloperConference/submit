@@ -61,4 +61,8 @@ public class EmailConfiguration {
     public void setFromName(String fromName) {
         this.fromName = fromName;
     }
+
+    public void setUseSSL(boolean useSSL) {
+        this.useSSL = useSSL;
+    }
 }
