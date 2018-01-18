@@ -156,8 +156,8 @@ viewSubmissionDetails submission model =
                 ]
             , div [ class "input-section" ]
                 [ h2 [] [ text "Additional information for the Program Committee (not public)" ]
-                , p [ class "input-description" ] [ text "Please include any information relevant to the Program Committee. Here you can write a few words about your motivation for speaking at Trondheim Developer Conference, and optionally include links to videos and slides from previous speaker engagements, or other links that tell us about you (e.g. your GitHub profile)." ]
-                , textarea [ class "small-textarea", value submission.infoToProgramCommittee, onInput InfoToProgramCommittee, placeholder "Let us know who you are, why you are passionate about this subject, and why YOU are the best person to hold this talk.\n\nNorwegian rules do not apply: it's allowed to brag a bit ;)" ] []
+                , p [ class "input-description" ] [ text "Please include where you work and any other information relevant to the Program Committee. Here you can write a few words about your motivation for speaking at Trondheim Developer Conference, and optionally include links to videos and slides from previous speaker engagements, or other links that tell us about you (e.g. your GitHub profile)." ]
+                , textarea [ class "small-textarea", value submission.infoToProgramCommittee, onInput InfoToProgramCommittee, placeholder "Let us know where you work, who you are, why you are passionate about this subject, and why YOU are the best person to hold this talk.\n\nNorwegian rules do not apply: it's allowed to brag a bit ;)" ] []
                 ]
             , div [ class "input-section" ]
                 [ div [ class "flex-header" ]
@@ -189,10 +189,8 @@ viewLength : Submission -> Html SubmissionField
 viewLength s =
     case s.format of
         "presentation" ->
-            select [ onInput Length ]
-                [ option [ value "45", selected <| s.length == "45" ] [ text "45 minutes" ]
-                , option [ value "60", selected <| s.length == "60" ] [ text "60 minutes" ]
-                ]
+            div [ class "input-description" ]
+                 [ text "30 minutes" ]
 
         "lightning-talk" ->
             select [ onInput Length ]
@@ -337,7 +335,7 @@ formatText : String -> String
 formatText format =
     case format of
         "presentation" ->
-            "Please select the length of the presentation (in minutes). Presentations can have a length of 45 or 60 minutes. Including Q&A"
+            "Presentations in minutes, including Q&A. The time limit is strictly enforced"
 
         "lightning-talk" ->
             "Please select the length of the presentation (in minutes). Lightning talks can be 10 or 20 minutes long. The time limit is strictly enforced"
