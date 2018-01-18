@@ -45,6 +45,9 @@ public class SlackClient {
     }
 
     public void postTalkMarkedForInReview(String id, String title, String format, String length, String language, String theAbstract, String submitterName, String submitterImage) {
+        if(slackConfiguration.disabled) {
+            return;
+        }
         connectIfNessesary();
 
         SlackChannel channel = slack.findChannelByName(slackConfiguration.channel);
@@ -71,6 +74,9 @@ public class SlackClient {
     }
 
     public void postTalkMarkedForNotInReview(String id, String title, String submitterName, String submitterEmail, String submitterImage) {
+        if(slackConfiguration.disabled) {
+            return;
+        }
         connectIfNessesary();
 
         SlackChannel channel = slack.findChannelByName(slackConfiguration.channel);
@@ -92,6 +98,9 @@ public class SlackClient {
     }
 
     public void postTalkReceivedNewComment(String id, String title, String speaker, String submitterImage, Comment comment) {
+        if(slackConfiguration.disabled) {
+            return;
+        }
         connectIfNessesary();
 
         SlackChannel channel = slack.findChannelByName(slackConfiguration.channel);
@@ -126,7 +135,9 @@ public class SlackClient {
     }
 
     public void postStatistics(Sessions sessions) {
-
+        if(slackConfiguration.disabled) {
+            return;
+        }
         List<Session> allTalks = sessions.sessions;
         List<Session> submittedTalks = allTalks.stream().filter(s -> s.status == SUBMITTED).collect(toList());
 

@@ -10,6 +10,7 @@ public class SlackConfiguration {
     public String token;
 
     public String channel;
+    public boolean disabled;
 
     public void setToken(String token) {
         this.token = token;
