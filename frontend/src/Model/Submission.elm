@@ -45,6 +45,7 @@ type alias Speaker =
     , deletable : Bool
     , hasPicture : Bool
     , pictureUrl : String
+    , hasEmail : Bool
     }
 
 
@@ -70,7 +71,7 @@ initSpeaker speakers =
                 _ ->
                     0
     in
-        ( nextInt, Speaker "" "" "" "" "" "" True False "" )
+        ( nextInt, Speaker "" "" "" "" "" "" True False "" False)
 
 
 initComment : List ( Int, Comment ) -> ( Int, Comment )
