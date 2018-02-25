@@ -45,7 +45,6 @@ decodeSpeaker =
         |> required "deletable" bool
         |> required "hasPicture" bool
         |> optional "pictureUrl" string ""
-        |> optional "hasEmail" bool False
 
 
 decodeComment : Decoder Comment

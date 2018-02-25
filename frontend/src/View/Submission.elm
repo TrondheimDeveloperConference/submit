@@ -375,7 +375,7 @@ speakerImage : Speaker -> Html SubmissionField
 speakerImage speaker =
     if speaker.hasPicture then
         div [ style <| [ ( "background-image", "url(" ++ speaker.pictureUrl ++ ")" ) ], class "speaker-image" ] []
-    else if speaker.hasEmail then
+    else if not (String.isEmpty speaker.email) then
             div [ style <| [ ( "background-image", "url(https://www.gravatar.com/avatar/" ++ MD5.hex speaker.email ++ ".jpg?s=512&d=identicon)" ) ], class "speaker-image" ] []
     else
         img [ src "assets/robot_padded_arm.png", class "speaker-image" ] []

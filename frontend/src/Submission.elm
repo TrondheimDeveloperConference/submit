@@ -83,7 +83,7 @@ updateSubmissionField field model =
                     let
                         updatedSpeakers =
                             List.map
-                                (\speaker -> updateSpeaker i speaker (\sp -> { sp | email = email, hasEmail = True }))
+                                (\speaker -> updateSpeaker i speaker (\sp -> { sp | email = email }))
                                 s.speakers
                     in
                         { s | speakers = updatedSpeakers }
