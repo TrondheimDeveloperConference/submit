@@ -67,7 +67,7 @@ viewFooter submission model =
                         ]
                     ]
                 , div []
-                    [ button [ class "button-save", onClick (SaveSubmission 0) ] [ text "Save now" ] ]
+                    [ button [ class <| "button-save " ++ disableIfNotDirty model.dirty, onClick (SaveSubmission 0) ] [ text <| saveButtonText model.dirty ] ]
                 ]
             ]
         ]
@@ -302,6 +302,19 @@ hideIfNotEditable editable =
         "hide"
     else
         ""
+disableIfNotDirty : Bool -> String
+disableIfNotDirty dirty =
+    if not dirty then
+        "saved"
+    else
+        ""
+
+saveButtonText : Bool -> String
+saveButtonText dirty =
+    if not dirty then
+        "Saved"
+    else
+        "Save now"
 
 hideIfApprovedRejected : String -> String
 hideIfApprovedRejected status =

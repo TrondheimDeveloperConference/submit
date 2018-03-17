@@ -54,7 +54,11 @@ button[disabled] {
     .icon-button("assets/icons-light/back.svg", @background-color: @green);
 }
 .button-save {
-    .icon-button("assets/icons-light/save.svg", @background-color: @green);
+    .icon-button("assets/icons-light/save.svg", @background-color: @gray);
+    &.saved {
+      cursor: inherit;
+      background-color: @green;
+    }
 }
 .button-new {
     .icon-button("assets/icons-light/new.svg", @background-color: @green);
