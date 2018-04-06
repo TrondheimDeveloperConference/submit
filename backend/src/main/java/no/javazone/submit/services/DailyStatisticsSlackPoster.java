@@ -28,7 +28,9 @@ public class DailyStatisticsSlackPoster {
     private static final ScheduledExecutorService SCHEDULER = Executors.newScheduledThreadPool(1);
 
     @Autowired
-    public DailyStatisticsSlackPoster(SleepingPillClient sleepingPillClient, SlackClient slackClient, SleepingPillConfiguration sleepingPillConfiguration) {
+    public DailyStatisticsSlackPoster(SleepingPillClient sleepingPillClient,
+                                      SlackClient slackClient,
+                                      SleepingPillConfiguration sleepingPillConfiguration) {
         this.sleepingPillClient = sleepingPillClient;
         this.slackClient = slackClient;
         this.sleepingPillConfiguration = sleepingPillConfiguration;

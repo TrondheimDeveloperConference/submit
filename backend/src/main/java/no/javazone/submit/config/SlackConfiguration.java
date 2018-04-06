@@ -11,6 +11,7 @@ public class SlackConfiguration {
 
     public String channel;
     public boolean disabled;
+    public boolean postDailyStatistics = true;
 
     public void setToken(String token) {
         this.token = token;
@@ -22,5 +23,9 @@ public class SlackConfiguration {
 
     public void setDisabled(boolean disabled) {
         this.disabled = disabled;
+    }
+
+    public void setPostDailyStatistics(boolean postDailyStatistics) {
+        this.postDailyStatistics = postDailyStatistics;
     }
 }

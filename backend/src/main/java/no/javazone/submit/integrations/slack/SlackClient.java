@@ -1,10 +1,10 @@
 package no.javazone.submit.integrations.slack;
 
-import com.ullink.slack.simpleslackapi.SlackAttachment;
-import com.ullink.slack.simpleslackapi.SlackChannel;
-import com.ullink.slack.simpleslackapi.SlackPreparedMessage;
-import com.ullink.slack.simpleslackapi.SlackSession;
+import com.ullink.slack.simpleslackapi.*;
 import com.ullink.slack.simpleslackapi.impl.SlackSessionFactory;
+import com.ullink.slack.simpleslackapi.replies.ParsedSlackReply;
+import com.ullink.slack.simpleslackapi.replies.SlackMessageReply;
+import com.ullink.slack.simpleslackapi.replies.SlackReply;
 import no.javazone.submit.api.representations.Comment;
 import no.javazone.submit.config.CakeConfiguration;
 import no.javazone.submit.config.SlackConfiguration;
@@ -21,6 +21,7 @@ import org.springframework.stereotype.Service;
 import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
+import java.util.concurrent.TimeUnit;
 
 import static java.util.stream.Collectors.toList;
 import static java.util.stream.Collectors.toSet;
@@ -45,6 +46,8 @@ public class SlackClient {
         } else {
             slack = SlackSessionFactory.createWebSocketSlackSession(slackConfiguration.token);
             connectIfNessesary();
+            SlackChannel channel = slack.findChannelByName(slackConfiguration.channel);
+            LOG.info("Posting to channel " + channel);
         }
     }
 
@@ -53,8 +56,6 @@ public class SlackClient {
             return;
         }
         connectIfNessesary();
-
-        SlackChannel channel = slack.findChannelByName(slackConfiguration.channel);
 
         SlackAttachment attachment = new SlackAttachment(title, "", "_Speaker has changed the talk status to 'ready for review'_", null);
         attachment.setColor("#30a74d");
@@ -72,7 +73,8 @@ public class SlackClient {
         SlackPreparedMessage message = new SlackPreparedMessage.Builder()
                 .addAttachment(attachment)
                 .build();
-        slack.sendMessage(channel, message);
+
+        sendMsgLogReply(message);
 
         AuditLogger.log(SENT_SLACK_MESSAGE, "session " + id, "type marked-for-review");
     }
@@ -82,8 +84,6 @@ public class SlackClient {
             return;
         }
         connectIfNessesary();
-
-        SlackChannel channel = slack.findChannelByName(slackConfiguration.channel);
 
         SlackAttachment attachment = new SlackAttachment(title, "", "_Speaker has changed the talk status back to 'not in review'_", null);
         attachment.setColor("#b63d9d");
@@ -96,7 +96,7 @@ public class SlackClient {
         SlackPreparedMessage message = new SlackPreparedMessage.Builder()
                 .addAttachment(attachment)
                 .build();
-        slack.sendMessage(channel, message);
+        sendMsgLogReply(message);
 
         AuditLogger.log(SENT_SLACK_MESSAGE, "session " + id, "type marked-for-not-in-review");
     }
@@ -106,8 +106,6 @@ public class SlackClient {
             return;
         }
         connectIfNessesary();
-
-        SlackChannel channel = slack.findChannelByName(slackConfiguration.channel);
 
         SlackAttachment attachment = new SlackAttachment(title, "", "_Speaker added new comment to his talk. Somebody should probably reply :)_", null);
         attachment.setColor("#F012BE");
@@ -123,7 +121,7 @@ public class SlackClient {
         SlackPreparedMessage message = new SlackPreparedMessage.Builder()
                 .addAttachment(attachment)
                 .build();
-        slack.sendMessage(channel, message);
+        sendMsgLogReply(message);
 
         AuditLogger.log(SENT_SLACK_MESSAGE, "session " + id, "type new-comment-from-speaker");
     }
@@ -139,7 +137,7 @@ public class SlackClient {
     }
 
     public void postStatistics(Sessions sessions) {
-        if(slackConfiguration.disabled) {
+        if(slackConfiguration.disabled || !slackConfiguration.postDailyStatistics) {
             return;
         }
         List<Session> allTalks = sessions.sessions;
@@ -166,8 +164,6 @@ public class SlackClient {
 
         connectIfNessesary();
 
-        SlackChannel channel = slack.findChannelByName(slackConfiguration.channel);
-
         SlackAttachment attachment = new SlackAttachment("Some statistics about the submitted talks", "", "_These statistics are posted 16.00 every day. All statistics are based on submitted talks (i.e excluding drafts) unless noted_", null);
         attachment.setColor("#3abae9");
         attachment.addMarkdownIn("text");
@@ -191,7 +187,7 @@ public class SlackClient {
         SlackPreparedMessage message = new SlackPreparedMessage.Builder()
                 .addAttachment(attachment)
                 .build();
-        slack.sendMessage(channel, message);
+        sendMsgLogReply(message);
 
         AuditLogger.log(SENT_SLACK_MESSAGE, "type statistics");
 
@@ -201,5 +197,12 @@ public class SlackClient {
         return talks.stream().filter(s -> s.status == status).count();
     }
 
+    private void sendMsgLogReply(SlackPreparedMessage message) {
+        SlackChannel channel = slack.findChannelByName(slackConfiguration.channel);
 
+        SlackMessageHandle<SlackMessageReply> replyHandle = slack.sendMessage(channel, message);
+        replyHandle.waitForReply(5, TimeUnit.SECONDS);
+        ParsedSlackReply reply = replyHandle.getReply();
+        LOG.info("Reply {} {}", reply.isOk(), reply.getErrorMessage());
+    }
 }
