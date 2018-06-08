@@ -250,7 +250,7 @@ viewSpeaker submission n ( i, speaker ) =
                 ]
             , div [ class "speaker-input-section" ]
                 [ h3 [] [ text "Your norwegian ZIP Code (optional)" ]
-                , input [ type_ "text", value speaker.zipCode, onInput <| SpeakerZipCode i, placeholder "Will let us contact you about future speaking opportunities in local javaBin user groups :)" ] []
+                , input [ type_ "text", value speaker.zipCode, onInput <| SpeakerZipCode i, placeholder "Will let us contact you about future speaking opportunities in local user groups :)" ] []
                 ]
             , div [ class "speaker-input-section" ]
                 [ h3 [] [ text "Speakers image" ]
