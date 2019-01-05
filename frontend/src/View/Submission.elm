@@ -79,7 +79,7 @@ viewSubmissionDetails submission model =
         [ div [ class "logo-wrapper" ] [ img [ src "assets/tdc-logo.svg", class "logo" ] [] ]
         , div [ class <| "edit-intro " ++ hideIfNotEditable submission.editable ]
             [ h1 [] [ text "Ready? Let's make your talk a reality!" ]
-            , p [ class "ingress" ] [ text "Trondheim Developer Conference takes place in Trondheim, Norway, on October 22th 2018. Do YOU want to be one of the great speakers at our conference? Fantastic! That's what this thing is for! Let's get you started!" ]
+            , p [ class "ingress" ] [ text "Trondheim Developer Conference takes place in Trondheim, Norway, on October 21th 2019. Do YOU want to be one of the great speakers at our conference? Fantastic! That's what this thing is for! Let's get you started!" ]
             , div [ class "help-part" ]
                 [ strong [] [ span [] [ text "April 8th" ], text "Create your talk" ]
                 , p [] [ text "Start creating your talk by filling in all the fields. We'll auto-save the talk for you as you edit, making sure you don't lose your great ideas." ]

@@ -13,7 +13,7 @@ view model =
     div [ class "wrapper login" ]
         [ div [ class "logo-wrapper" ]
             [ img [ src "assets/tdc-logo.svg", class "logo" ] [] ]
-        , h1 [] [ text "Get ready to speak at", br [] [], text "Trondheim Developer Conference 2018" ]
+        , h1 [] [ text "Get ready to speak at", br [] [], text "Trondheim Developer Conference 2019" ]
         , div [ class "email-wrapper" ]
             [ input [ value model.email, onInput LoginEmail, onEnter LoginSubmitEmail, type_ "email", class "email", id "email-address", placeholder "Your email address" ] []
             , if model.loading then
