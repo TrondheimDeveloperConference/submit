@@ -3,5 +3,3 @@ install: cd backend && mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B
 script: mvn install
 jdk:
   - oraclejdk8
-notifications:
-  slack: javabin:QD1HROpon5bu8WAOotb5o8IO
