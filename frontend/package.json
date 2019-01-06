@@ -7,7 +7,7 @@
     "clean": "rm -rf dist && mkdir dist",
     "copy": "cp -a static/. dist/",
     "watch:static": "onchange 'static/**' -- npm run copy",
-    "build:elm": "elm-make Main.elm --output dist/app.js",
+    "build:elm": "elm-make Main.elm --yes --output dist/app.js",
     "watch:elm": "elm-live Main.elm --output dist/app.js --dir=dist -- --debug",
     "build:less": "lessc styles/main.less > dist/main.css",
     "watch:less": "onchange 'styles/**/*.less' -- npm run build:less",

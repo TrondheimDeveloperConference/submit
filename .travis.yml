@@ -3,6 +3,7 @@ services:
   - docker
 script: 
   - docker build -t trondheimdc/submit-backend backend
+  - docker build -t trondheimdc/submit-frontend frontend
 
 deploy:
   provider: script
