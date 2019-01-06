@@ -1,5 +1,12 @@
 language: java
-install: cd backend && mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
-script: mvn install
-jdk:
-  - oraclejdk8
+services:
+  - docker
+script: 
+  - docker build -t trondheimdc/submit-backend backend
+
+deploy:
+  provider: script
+  script: bash docker_push
+  on:
+    branch: master
+
