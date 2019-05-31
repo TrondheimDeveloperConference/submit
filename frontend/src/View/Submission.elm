@@ -90,7 +90,7 @@ viewSubmissionDetails submission model =
                 ]
             , div [ class "help-part" ]
                 [ strong [] [ span [] [ text "June 3rd" ], text "Submission deadline" ]
-                , p [] [ text "Get all your last touches in by June 10th. After that, the program committee will go through all talks and select what will be a part of the program." ]
+                , p [] [ text "Get all your last touches in by June 3rd. After that, the program committee will go through all talks and select what will be a part of the program." ]
                 ]
             , div [ class "help-part" ]
                 [ strong [] [ span [] [ text "August 12th" ], text "Know your result" ]
