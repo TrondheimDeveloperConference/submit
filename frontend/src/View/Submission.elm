@@ -184,7 +184,7 @@ viewSubmissionDetails submission model =
             , div [ class <| "input-section " ++ hideIfNotEditable submission.editable ++ " " ++ hideIfApprovedRejected submission.status ]
                 [ h2 [] [ text "How finished are you with your abstract?" ]
                 , p [ class "input-description" ] [ text "Keep it as a draft until you have filled in everything. Don't worry, you can still make changes after marking it as ready for review." ]
-                , p [ class "input-description input-description-strong" ] [ text "Make sure you mark it as ready by June 1th at the latest to have your talk considered for TDC 2018! Mark your calendar! ;)" ]
+                , p [ class "input-description input-description-strong" ] [ text "Make sure you mark it as ready by June 3th at the latest to have your talk considered for TDC 2019! Mark your calendar! ;)" ]
                 , radio "Not ready: Keep it as my personal draft" "status" "DRAFT" (Status "DRAFT") <| submission.status == "DRAFT"
                 , radio "Ready: Let the program committee look at it" "status" "SUBMITTED" (Status "SUBMITTED") <| submission.status == "SUBMITTED"
                 ]
