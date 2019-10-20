@@ -171,7 +171,9 @@ viewSubmissionDetails submission model =
                 [ div [ class "flex-header" ]
                     [ h2 [ class "flex-header-element" ] [ text "Who are you?" ]
                     , div [ class "flex-header-element" ]
-                        button [ onClick AddSpeaker, class "button-new" ] [ text "Add second speaker" ]
+                        [
+                            button [ onClick AddSpeaker, class "button-new" ] [ text "Add speaker" ]
+                        ]
                     ]
                 , p [ class "input-description" ] [ text "Please give us a little bit of information about yourself. You can also add any additional speakers here. All of you will be shown in the program." ]
                 , ul [ class "speakers" ] <|
