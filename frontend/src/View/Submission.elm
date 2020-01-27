@@ -79,7 +79,7 @@ viewSubmissionDetails submission model =
         [ div [ class "logo-wrapper" ] [ img [ src "assets/tdc-logo.svg", class "logo" ] [] ]
         , div [ class <| "edit-intro " ++ hideIfNotEditable submission.editable ]
             [ h1 [] [ text "Ready? Let's make your talk a reality!" ]
-            , p [ class "ingress" ] [ text "Trondheim Developer Conference takes place in Trondheim, Norway, on October 28th 2019. Do YOU want to be one of the great speakers at our conference? Fantastic! That's what this thing is for! Let's get you started!" ]
+            , p [ class "ingress" ] [ text "Trondheim Developer Conference takes place in Trondheim, Norway, on October 26th 2020. Do YOU want to be one of the great speakers at our conference? Fantastic! That's what this thing is for! Let's get you started!" ]
             , div [ class "help-part" ]
                 [ strong [] [ span [] [ text "April 8th" ], text "Create your talk" ]
                 , p [] [ text "Start creating your talk by filling in all the fields. We'll auto-save the talk for you as you edit, making sure you don't lose your great ideas." ]
@@ -182,7 +182,7 @@ viewSubmissionDetails submission model =
             , div [ class <| "input-section " ++ hideIfNotEditable submission.editable ++ " " ++ hideIfApprovedRejected submission.status ]
                 [ h2 [] [ text "How finished are you with your abstract?" ]
                 , p [ class "input-description" ] [ text "Keep it as a draft until you have filled in everything. Don't worry, you can still make changes after marking it as ready for review." ]
-                , p [ class "input-description input-description-strong" ] [ text "Make sure you mark it as ready by June 3th at the latest to have your talk considered for TDC 2019! Mark your calendar! ;)" ]
+                , p [ class "input-description input-description-strong" ] [ text "Make sure you mark it as ready by June 3th at the latest to have your talk considered for TDC 2020! Mark your calendar! ;)" ]
                 , radio "Not ready: Keep it as my personal draft" "status" "DRAFT" (Status "DRAFT") <| submission.status == "DRAFT"
                 , radio "Ready: Let the program committee look at it" "status" "SUBMITTED" (Status "SUBMITTED") <| submission.status == "SUBMITTED"
                 ]
